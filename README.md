@@ -9,6 +9,7 @@ The snake_raven_controller and vision_system_snakeraven uses Eigen to compute th
 
 ## Project builds on Raven II software:
 1. **uw-biorobotics/raven2** : [This code](https://github.com/uw-biorobotics/raven2) is the main RAVEN software to connect to (release 18_05). The modified files can be found in raven_2 
+2. My original works: [**snake_raven_controller**](https://github.com/Andrew-Raz-ACRV/snake_raven_controller) and [**vision_system_snakeraven**](https://github.com/Andrew-Raz-ACRV/vision_servo_control_snakeraven)
 
 Important modifcations in raven_2/src
 ---**local_io.cpp** --------------------- This is where the new ros publisher and subscriber defined 'JointState' and 'raven_jointmove'
