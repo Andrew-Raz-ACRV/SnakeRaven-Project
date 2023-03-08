@@ -11,15 +11,6 @@ The snake_raven_controller and vision_system_snakeraven uses Eigen to compute th
 1. **uw-biorobotics/raven2** : [This code](https://github.com/uw-biorobotics/raven2) is the main RAVEN software to connect to (release 18_05). The modified files can be found in raven_2 
 2. My original works: [**snake_raven_controller**](https://github.com/Andrew-Raz-ACRV/snake_raven_controller) and [**vision_system_snakeraven**](https://github.com/Andrew-Raz-ACRV/vision_servo_control_snakeraven)
 
-Important modifcations in raven_2/src
----**local_io.cpp** --------------------- This is where the new ros publisher and subscriber defined 'JointState' and 'raven_jointmove'
----**rt_raven.cpp** --------------------- This is where the new control mode is: 'raven_joint_velocity_control'
----**trajectory.cpp** ------------------- This is where the deltas increment the desired joint position: 'update_joint_position_trajectory'
-In raven_2/include/raven
----**defines.h** ------------------------ Skip tool initialisation is enabled line 45: #define RICKS_TOOLS     //skips tool initialization
-In raven_2/msg
-----**raven_jointmove.msg** ------------- This is where the joint deltas come through
-
 ## How to use SnakeRaven
 QUT has an assembled SnakeRaven tool and instructions, CAD files and other resources to create SnakeRaven can be found in the appendix of my [thesis](https://eprints.qut.edu.au/235042/)
 
