@@ -151,7 +151,7 @@ Additional rotation under manual orientation control (without IBVS assist)
 - Y +    f  bend left
 - Y -    h  bend right
 
-_6. **Waypoint Navigation** - The only fully autonomous mode. Under any arm configuration (including dual arm), this will move the tool down by a distance and begin tracing squares in space. It allows snakeraven to move either arm auonomously to a desired set of waypoints defined in functions in [code](https://github.com/Andrew-Raz-ACRV/SnakeRaven-Project/blob/main/snake_raven_controller/src/Waypoint_Task_process.cpp)
+_6. **Waypoint Navigation** - The only fully autonomous mode. Under any arm configuration (including dual arm), this will move the tool down by a distance and begin tracing squares in space. It allows snakeraven to move either arm autonomously to a desired set of waypoints defined in functions in [code](https://github.com/Andrew-Raz-ACRV/SnakeRaven-Project/blob/main/snake_raven_controller/src/Waypoint_Task_process.cpp)
 
 ## Contact
 This code is written by Andrew Razjigaev. If there are queries you can contact him via email: andrew_razjigaev@outlook.com
