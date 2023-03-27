@@ -12,7 +12,7 @@ The snake_raven_controller and vision_system_snakeraven uses Eigen to compute th
 2. My original works: [**snake_raven_controller**](https://github.com/Andrew-Raz-ACRV/snake_raven_controller) and [**vision_system_snakeraven**](https://github.com/Andrew-Raz-ACRV/vision_servo_control_snakeraven)
 
 ## How to use SnakeRaven
-QUT has an assembled SnakeRaven tool and instructions, CAD files and other resources to create SnakeRaven can be found in the appendix of my [thesis](https://eprints.qut.edu.au/235042/)
+QUT has an assembled SnakeRaven tool. Instructions, CAD files and other resources to create your own SnakeRaven can be found in the appendix of my [thesis](https://eprints.qut.edu.au/235042/)
 
 1. **Download** : On the Raven II computer ensure you have the packages snake_raven_controller/ and vision_system_snakeraven/ from this repository and place the folder in the Raven II folder e.g. home/raven_18_05
 
