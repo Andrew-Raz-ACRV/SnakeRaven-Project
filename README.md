@@ -16,7 +16,7 @@ QUT has an assembled SnakeRaven tool. Instructions, CAD files and other resource
 
 1. **Download** : On the Raven II computer ensure you have the packages snake_raven_controller/ and vision_system_snakeraven/ from this repository and place the folder in the Raven II folder e.g. home/raven_18_05
 
-2. **Update** : Go to raven_18_05/raven_2 and update its contents with the three /src /msg /includes folders in the contents of folder [raven_2](https://github.com/Andrew-Raz-ACRV/SnakeRaven-Project/tree/main/raven_2)
+2. **Update** : Go to raven_18_05/raven_2 and update its contents with the three folders: /src /msg /include in the contents of folder [raven_2](https://github.com/Andrew-Raz-ACRV/SnakeRaven-Project/tree/main/raven_2)
 
 3. **Make** : Open a new terminal and cd to the Raven II directory. Run catkin_make to compile the new content and modifications
 Note: step "source devel/setup.bash" can be unnecessary as it is being executed in .bashrc at start up
