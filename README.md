@@ -19,7 +19,7 @@ QUT has an assembled SnakeRaven tool, if using the RAVEN II computer at QUT (sin
 2. **Update** : Go to raven_18_05/raven_2 and update its contents with the three folders: /src /msg /include in the contents of folder [raven_2](https://github.com/Andrew-Raz-ACRV/SnakeRaven-Project/tree/main/raven_2)
 
 3. **Make** : Open a new terminal and cd to the Raven II directory. Run catkin_make to compile the new content and modifications
-Note: step "source devel/setup.bash" can be unnecessary as it is being executed in .bashrc at start up
+Note: the sourcing step "source devel/setup.bash" is automatically being run on the QUT computer as it is being called in the .bashrc file
 ```
 cd raven_18_05
 source devel/setup.bash
