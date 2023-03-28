@@ -111,7 +111,7 @@ Dominant arm mapping
 - z_rot+ y
 - z_rot- r
 
-Additional for right arm in dual arm setting:
+Additional keys in number pad for right arm use in dual arm setting:
 - Z+     4
 - Z-     6
 - Y+     5
