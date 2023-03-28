@@ -66,7 +66,7 @@ _0. **Calibration** - this moves the arms to the required configuration given by
 
 0. right arm, 1. left arm or 2. dual arm. 
 
-In each of these cases the selected dominate arm or both arms are moved to be perpendicular to the table and the rest are moved aside. It will pop up a message saying that you can insert the SnakeRaven tool onto the tool holder. You can use the keyboard to adjust the joints of the robot inividually particularly to insert the SnakeRaven tool to mesh with the robot. Good Calibration is when SnakeRaven is neutral and perpendicular to the table as seen in the SnakeRaven [image](https://github.com/Andrew-Raz-ACRV/snake_raven_controller/blob/master/FrontCoverSnake2.png).
+In each of these cases the selected dominate arm or both arms are moved to be perpendicular to the table and the other arm is moved aside. It will pop up a message saying that you can insert the SnakeRaven tool onto the tool holder. You can use the keyboard to adjust the joints of the robot inividually particularly to insert the SnakeRaven tool to mesh with the robot. Good Calibration is when SnakeRaven is neutral and perpendicular to the table as seen in the SnakeRaven [image](https://github.com/Andrew-Raz-ACRV/snake_raven_controller/blob/master/FrontCoverSnake2.png).
 
 _1. **Joint Control** - this allows you to control the robot joints individually with the keyboard without calibration
 
