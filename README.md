@@ -14,9 +14,9 @@ The snake_raven_controller and vision_system_snakeraven uses Eigen to compute th
 ## How to use SnakeRaven
 QUT has an assembled SnakeRaven tool, if using the RAVEN II computer at QUT (since March 2023) skip to step 3. Instructions, parts list, CAD files, videos and other resources to create your own SnakeRaven can be found in the appendix of my [thesis](https://eprints.qut.edu.au/235042/) and the bottom of this readme file
 
-1. **Download** : On the Raven II computer ensure you have the packages snake_raven_controller/ and vision_system_snakeraven/ from this repository and place the folder in the Raven II folder e.g. home/raven_18_05
+1. **Download** : On the RAVEN II computer ensure you have the packages snake_raven_controller/ and vision_system_snakeraven/ from this repository and place the folder in the RAVEN II catkin workspace folder e.g. home/raven_18_05
 
-2. **Update** : Go to raven_18_05/raven_2 and update its contents with the three folders: /src /msg /include in the contents of folder [raven_2](https://github.com/Andrew-Raz-ACRV/SnakeRaven-Project/tree/main/raven_2)
+2. **Update** : Go to raven_18_05/raven_2 and update its contents with the three folders: /src /msg /include in the contents of folder [raven_2](https://github.com/Andrew-Raz-ACRV/SnakeRaven-Project/tree/main/raven_2). Keep a back up of the original RAVEN II code just in case.
 
 3. **Make** : Open a new terminal and cd to the Raven II directory. Run catkin_make to compile the new content and modifications
 Note: the sourcing step "source devel/setup.bash" is automatically being run on the QUT computer as it is being called in the .bashrc file
@@ -157,7 +157,7 @@ Additional keys in number pad for right arm use in dual arm setting:
 
 _3. **Reset** - This moves both arms (or dominant arm) back to their perpendicular starting point as selected after calibration
 
-_4. **Hand-eye calibration** - Warning: The outcome of this process is not very accurate and by default the hand-eye calibration is already set. This mode only supports the right arm configuration assuming that is where the camera is attached.
+_4. **Hand-eye calibration** - Warning: The outcome of this process is not very accurate and by default the hand-eye calibration is already set manually in the code. This mode only supports the right arm configuration assuming that is where the camera is attached.
 1. Put an [aruco marker](https://github.com/Andrew-Raz-ACRV/SnakeRaven-Project/blob/main/vision_system_snakeraven/ArucoMarker1.png) in the camera field of view and keep it stationary
 2. The program starts recording data points immediantely so the user must teleoperate the robot until the data collection is complete. After completion, the new camera to tool transform is displayed.
 
