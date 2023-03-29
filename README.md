@@ -11,6 +11,9 @@ The snake_raven_controller and vision_system_snakeraven uses Eigen to compute th
 1. **uw-biorobotics/raven2** : [This code](https://github.com/uw-biorobotics/raven2) is the main RAVEN software to connect to (release 18_05). Note that this project was made for the ROS kinetic release. The modified files can be found in this repository's [raven_2](https://github.com/Andrew-Raz-ACRV/SnakeRaven-Project/tree/main/raven_2) folder
 2. My original works: [**snake_raven_controller**](https://github.com/Andrew-Raz-ACRV/snake_raven_controller) and [**vision_system_snakeraven**](https://github.com/Andrew-Raz-ACRV/vision_servo_control_snakeraven)
 
+## RAVEN II start up procedure at QUT
+On the bottom stack, turn on the 48V power and wait for 5 seconds. Then turn on the system power and toggle the power button in the 4th stack to turn on the computer. Login details are provided in the lab documents inside the lab.
+
 ## How to use SnakeRaven
 QUT has an assembled SnakeRaven tool, if using the RAVEN II computer at QUT (since March 2023) skip to step 3. Instructions, parts list, CAD files, videos and other resources to create your own SnakeRaven can be found in the appendix of my [thesis](https://eprints.qut.edu.au/235042/) and the bottom of this readme file
 
@@ -18,7 +21,7 @@ QUT has an assembled SnakeRaven tool, if using the RAVEN II computer at QUT (sin
 
 2. **Update** : Go to raven_18_05/raven_2 and update its contents with the three folders: /src /msg /include in the contents of folder [raven_2](https://github.com/Andrew-Raz-ACRV/SnakeRaven-Project/tree/main/raven_2). Keep a back up of the original RAVEN II code just in case.
 
-3. **Make** : Open a new terminal and cd to the Raven II directory. Run catkin_make to compile the new content and modifications
+3. **Make** : Open a new terminal (ctrl-alt-t) and cd to the Raven II directory. Run catkin_make to compile the new content and modifications
 Note: the sourcing step "source devel/setup.bash" is automatically being run on the QUT computer as it is being called in the .bashrc file
 ```
 cd raven_18_05
@@ -43,7 +46,7 @@ rosrun snake_raven_controller talkersnakeraven
 ```
 rosrun cv_camera cv_camera_node
 ```
-Note: depending on your system you may need to change the camera parameter to device number #:
+Note: the endoscope is a USB camera connected to the computer and is device 0 at QUT. Depending on your system you may need to change the camera parameter to device number #:
 ```
 rosparam set cv_camera/device_id #
 ```
@@ -51,7 +54,7 @@ Optionally, You can check the view of the image feed with command
 ```
 rosrun image_view image_view image:=/cv_camera/image_raw
 ```
-Optionally for a different device # you can also rename the camera node but beaware this changes the topic name to subscribe to:
+Optionally for a different device # like an external camera you can also rename the camera node but beaware this changes the topic name to subscribe to:
 ```
 rosrun cv_camera cv_camera_node __name:=external _device_id=#
 ```
@@ -64,6 +67,10 @@ rosrun vision_system_snakeraven imageprocessor
 Layout of the four terminals for each of the ROS Nodes:
 
 ![alt text](https://github.com/Andrew-Raz-ACRV/SnakeRaven-Project/blob/main/images/terminals.PNG)
+
+Running rqt_graph in another terminal will visualise the ROS communication between these four nodes:
+
+
 
 9. **Selection Menu** : All interaction is conducted in the snake_raven_controller node
 
@@ -192,6 +199,7 @@ Check out my
 - [SnakeRaven assembly video](https://www.youtube.com/watch?v=k744cxB5OMc)
 - [introduction to SnakeRaven video](https://www.youtube.com/watch?v=S8Rw0hFhcuw)
 - Haptic devices at QUT instruction video
+- How to use the [NDI electromagnetic Tracker](https://github.com/Andrew-Raz-ACRV/ndi_tracker_project) for SnakeRaven
 - [CAD files](https://grabcad.com/library/snakeraven-1)
 
 And view the original QUT RAVEN II training resources from 2018:
