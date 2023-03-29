@@ -8,7 +8,7 @@ The snake_raven_controller and vision_system_snakeraven uses Eigen to compute th
 3. In snake_raven_controller/ and vision_system_snakeraven/ create the folder 'include' and paste 'Eigen' and 'unsupported' into the include folder.
 
 ## Project builds on Raven II software:
-1. **uw-biorobotics/raven2** : [This code](https://github.com/uw-biorobotics/raven2) is the main RAVEN software to connect to (release 18_05). The modified files can be found in this repository's [raven_2](https://github.com/Andrew-Raz-ACRV/SnakeRaven-Project/tree/main/raven_2) folder
+1. **uw-biorobotics/raven2** : [This code](https://github.com/uw-biorobotics/raven2) is the main RAVEN software to connect to (release 18_05). Note that this project was made for the ROS kinetic release. The modified files can be found in this repository's [raven_2](https://github.com/Andrew-Raz-ACRV/SnakeRaven-Project/tree/main/raven_2) folder
 2. My original works: [**snake_raven_controller**](https://github.com/Andrew-Raz-ACRV/snake_raven_controller) and [**vision_system_snakeraven**](https://github.com/Andrew-Raz-ACRV/vision_servo_control_snakeraven)
 
 ## How to use SnakeRaven
