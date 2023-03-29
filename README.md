@@ -188,9 +188,10 @@ _6. **Waypoint Navigation** - The only fully autonomous mode. Under any arm conf
 ## Additional Sources:
 Check out my 
 - [thesis](https://eprints.qut.edu.au/235042/) 
-- [youtube](https://www.youtube.com/channel/UCiLKwfcym1r7Ru3fDSA_D_A)
-- [assembly video](https://www.youtube.com/watch?v=k744cxB5OMc)
-- [introduction video](https://www.youtube.com/watch?v=S8Rw0hFhcuw)
+- [youtube for demo videos](https://www.youtube.com/channel/UCiLKwfcym1r7Ru3fDSA_D_A)
+- [SnakeRaven assembly video](https://www.youtube.com/watch?v=k744cxB5OMc)
+- [introduction to SnakeRaven video](https://www.youtube.com/watch?v=S8Rw0hFhcuw)
+- Haptic devices at QUT instruction video
 - [CAD files](https://grabcad.com/library/snakeraven-1)
 
 And view the original QUT RAVEN II training resources from 2018:
