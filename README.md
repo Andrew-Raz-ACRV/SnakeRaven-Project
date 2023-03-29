@@ -117,7 +117,7 @@ Additional keys in number pad for right arm use in dual arm setting:
 - Y+     5
 - Y-     2
 - X+     3
-- X-     4
+- X-     1
 - freeze z
 - pan +  7
 - pan -  9
