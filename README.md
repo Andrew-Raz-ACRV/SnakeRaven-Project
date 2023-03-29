@@ -193,6 +193,9 @@ Check out my
 - [introduction video](https://www.youtube.com/watch?v=S8Rw0hFhcuw)
 - [CAD files](https://grabcad.com/library/snakeraven-1)
 
+And view the original QUT RAVEN II training resources from 2018:
+- [How to use the RAVEN II training videos](https://www.youtube.com/playlist?list=PLxMsr-mRZng81BdDTaUX0sueXWeVOX0qd)
+
 Code repositories to explore:
 1. **uw-biorobotics/raven2** : [RAVEN II code repository](https://github.com/uw-biorobotics/raven2)
 2. **AutoCircle_generator** : an example application of using ROS with the RAVEN II [AutoCircle_generator code](https://github.com/melodysu83/AutoCircle_generater)
