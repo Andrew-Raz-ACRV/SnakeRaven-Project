@@ -194,15 +194,15 @@ Check out my
 - [CAD files](https://grabcad.com/library/snakeraven-1)
 
 And view the original QUT RAVEN II training resources from 2018:
-Note that this material can be out dated:
 - [How to use the RAVEN II training videos](https://www.youtube.com/playlist?list=PLxMsr-mRZng81BdDTaUX0sueXWeVOX0qd)
 - The files in [raven_qut_training_docs_2018](https://github.com/Andrew-Raz-ACRV/SnakeRaven-Project/tree/main/raven_qut_training_docs_2018)
+Note that this material can be out dated but has timeless resources such as the kinematics report, RAVEN history and CAD files
 
-Code repositories to explore:
+GitHub Code repositories to explore:
 1. **uw-biorobotics/raven2** : [RAVEN II code repository](https://github.com/uw-biorobotics/raven2)
 2. **AutoCircle_generator** : an example application of using ROS with the RAVEN II [AutoCircle_generator code](https://github.com/melodysu83/AutoCircle_generater)
 3. My original works before this synthesis of the two packages: [**snake_raven_controller**](https://github.com/Andrew-Raz-ACRV/snake_raven_controller) and [**vision_system_snakeraven**](https://github.com/Andrew-Raz-ACRV/vision_servo_control_snakeraven)
 4. MATLAB simulations: [snakeraven controller simulation](https://github.com/Andrew-Raz-ACRV/SnakeRavenSimulation) and [IBVS assisted teleoperation simulation](https://github.com/Andrew-Raz-ACRV/SnakeRaven_IBVS_simulation)
 
 ## Contact
-This code is written by Andrew Razjigaev. If there are queries you can contact him via email: andrew_razjigaev@outlook.com
+This code is written by Andrew Razjigaev and describes the SnakeRaven system at QUT as it was in March 2023. If there are any queries about this project you can contact him via email: andrew_razjigaev@outlook.com
