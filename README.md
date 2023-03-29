@@ -26,10 +26,11 @@ source devel/setup.bash
 catkin_make
 ```
 
-4. **Run the Raven II** : If the SnakeRaven instrument isn't attached at this point wait until the calibration step. roslaunch the robot. Press the e-stop, twist release and press the silver reset to go through homing. 
+4. **Run the Raven II** : If the SnakeRaven instrument isn't attached at this point wait until the calibration step. roslaunch the robot and a log message should indicate that you are running the modified version of the RAVEN II software. Press the e-stop, twist release and press the silver reset to go through homing. 
 ```
 roslaunch raven_2 raven_2.launch
 ```
+![alt text](https://github.com/Andrew-Raz-ACRV/SnakeRaven-Project/blob/main/images/raven_2_start.PNG)
 
 5. **Velocity Joint Control mode** : Press 'm' to change mode and press '2' to start the velocity joint control mode, press the e-stop, twist release and press the silver reset for the mode change to occur.
 
@@ -60,18 +61,37 @@ rosrun cv_camera cv_camera_node __name:=external _device_id=#
 rosrun vision_system_snakeraven imageprocessor
 ```
 
+Layout of the four terminals for each of the ROS Nodes:
+
+![alt text](https://github.com/Andrew-Raz-ACRV/SnakeRaven-Project/blob/main/images/terminals.PNG)
+
 9. **Selection Menu** : All interaction is conducted in the snake_raven_controller node
+
+![alt text](https://github.com/Andrew-Raz-ACRV/SnakeRaven-Project/blob/main/images/snakeraven_controller_menu.PNG)
 
 _0. **Calibration** - this moves the arms to the required configuration given by the next user choice:
 
-0. right arm, 1. left arm or 2. dual arm. 
+![alt text](https://github.com/Andrew-Raz-ACRV/SnakeRaven-Project/blob/main/images/arm_menu.PNG)
 
-In each of these cases the selected dominate arm or both arms are moved to be perpendicular to the table and the other arm is moved aside. It will pop up a message saying that you can insert the SnakeRaven tool onto the tool holder. You can use the keyboard to adjust the joints of the robot individually particularly to insert the SnakeRaven tool to mesh with the robot (see Joint Control section for keyboard mapping). Good Calibration is when SnakeRaven is neutral and perpendicular to the table as seen in the SnakeRaven [image](https://github.com/Andrew-Raz-ACRV/snake_raven_controller/blob/master/FrontCoverSnake2.png). Use the keyboard joint control to adjust the robot calibration manually. 
+Enter:
+0. for right arm only, 1. for left arm only or 2. for dual arm configuration. 
+
+In each of these cases the selected dominate arm or both arms are moved to be perpendicular to the table and the other arm is moved aside. It will pop up a message saying that you can insert the SnakeRaven tool onto the tool holder. 
+
+![alt text](https://github.com/Andrew-Raz-ACRV/SnakeRaven-Project/blob/main/images/calibration_screen.PNG)
+
+You can use the keyboard to adjust the joints of the robot individually particularly to insert the SnakeRaven tool to mesh with the robot (see Joint Control section for keyboard mapping). Good Calibration is when SnakeRaven is neutral and perpendicular to the table as seen in the SnakeRaven image below:
+
+![alt text](https://github.com/Andrew-Raz-ACRV/SnakeRaven-Project/blob/main/images/raven2_calibratedpose.PNG). 
+
+Use the keyboard joint control to adjust the robot calibration manually. 
 
 _1. **Joint Control** - this allows you to control the robot joints individually with the keyboard without calibration
 
 **Joint Control Keyboard Mapping:**
 See file [Keyboard_interactions.cpp](https://github.com/Andrew-Raz-ACRV/SnakeRaven-Project/blob/main/snake_raven_controller/src/Keyboard_interactions.cpp) 
+
+![alt text](https://github.com/Andrew-Raz-ACRV/SnakeRaven-Project/blob/main/images/jointmapping.PNG)
 
 Left Arm
 - Shoulder +/-:      1/q
