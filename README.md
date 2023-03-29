@@ -1,5 +1,5 @@
 # SnakeRaven-Project
-The fully integrated SnakeRaven code including an updated SnakeRaven controller with control capability for dual arm teleoperation, vision system supporting hand-eye calibration and automated motion using waypoint navigation for dual arms.
+The fully integrated SnakeRaven code including an updated SnakeRaven controller with control capability for dual arm teleoperation, vision system supporting hand-eye calibration and automated motion using waypoint navigation for dual arms. This project was completed in March 2023.
 
 ## Prerequisite installation :
 The snake_raven_controller and vision_system_snakeraven uses Eigen to compute the kinematics and VPC control algorithms. To install this do:
@@ -15,7 +15,10 @@ The snake_raven_controller and vision_system_snakeraven uses Eigen to compute th
 On the bottom stack, turn on the 48V power and wait for 5 seconds. Then turn on the system power and toggle the power button in the 4th stack to turn on the computer. Login details are provided in the lab documents inside the lab.
 
 ## How to use SnakeRaven
-QUT has an assembled SnakeRaven tool, if using the RAVEN II computer at QUT (since March 2023) skip to step 3. Instructions, parts list, CAD files, videos and other resources to create your own SnakeRaven can be found in the appendix of my [thesis](https://eprints.qut.edu.au/235042/) and the bottom of this readme file
+
+0. **RAVEN II start up procedure at QUT**: On the bottom stack, turn on the 48V power and wait for 5 seconds. Then turn on the system power and toggle the power button in the 4th stack to turn on the computer. Login details are provided in the lab documents inside the lab.
+
+QUT has an assembled SnakeRaven tool, if using the RAVEN II computer at QUT skip to step 3. Instructions, parts list, CAD files, videos and other resources to create your own SnakeRaven can be found in the appendix of my [thesis](https://eprints.qut.edu.au/235042/) and the bottom of this readme file
 
 1. **Download** : On the RAVEN II computer ensure you have the packages snake_raven_controller/ and vision_system_snakeraven/ from this repository and place the folder in the RAVEN II catkin workspace folder e.g. home/raven_18_05
 
@@ -70,7 +73,7 @@ Layout of the four terminals for each of the ROS Nodes:
 
 Running rqt_graph in another terminal will visualise the ROS communication between these four nodes:
 
-
+![alt text](https://github.com/Andrew-Raz-ACRV/SnakeRaven-Project/blob/main/images/rqt_graph_diagram.png)
 
 9. **Selection Menu** : All interaction is conducted in the snake_raven_controller node
 
