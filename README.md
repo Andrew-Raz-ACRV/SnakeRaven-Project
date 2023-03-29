@@ -206,4 +206,4 @@ GitHub Code repositories to explore:
 4. MATLAB simulations: [snakeraven controller simulation](https://github.com/Andrew-Raz-ACRV/SnakeRavenSimulation) and [IBVS assisted teleoperation simulation](https://github.com/Andrew-Raz-ACRV/SnakeRaven_IBVS_simulation)
 
 ## Contact
-This code is written by Andrew Razjigaev and describes the SnakeRaven system at QUT as it was in March 2023. If there are any queries about this project you can contact him via email: andrew_razjigaev@outlook.com
+This code is written by Andrew Razjigaev and describes the SnakeRaven system at QUT at the end of his PhD and work there from February 2023. If there are any queries about this project you can contact him via email: andrew_razjigaev@outlook.com
