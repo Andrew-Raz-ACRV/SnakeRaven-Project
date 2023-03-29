@@ -75,7 +75,7 @@ Running rqt_graph in another terminal will visualise the ROS communication betwe
 
 ![alt text](https://github.com/Andrew-Raz-ACRV/SnakeRaven-Project/blob/main/images/rqt_graph_diagram.png)
 
-9. **Selection Menu** : All interaction is conducted in the snake_raven_controller node
+9. **Selection Menu** : All user interaction is conducted in the snake_raven_controller node
 
 ![alt text](https://github.com/Andrew-Raz-ACRV/SnakeRaven-Project/blob/main/images/snakeraven_controller_menu.PNG)
 
