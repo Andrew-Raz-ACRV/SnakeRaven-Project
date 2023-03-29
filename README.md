@@ -80,7 +80,13 @@ In each of these cases the selected dominate arm or both arms are moved to be pe
 
 ![alt text](https://github.com/Andrew-Raz-ACRV/SnakeRaven-Project/blob/main/images/calibration_screen.PNG)
 
-You can use the keyboard to adjust the joints of the robot individually particularly to insert the SnakeRaven tool to mesh with the robot (see Joint Control section for keyboard mapping). Good Calibration is when SnakeRaven is neutral and perpendicular to the table as seen in the SnakeRaven image below:
+You can use the keyboard to adjust the joints of the robot individually particularly to insert the SnakeRaven tool to mesh with the robot (see Joint Control section for keyboard mapping). 
+
+This is also the ONLY point where you can re-tension the SnakeRaven tendons and use tweezers to place them back onto the pulley guides. DO NOT do this at any other stage or risk breaking the end-effector.
+
+![alt text](https://github.com/Andrew-Raz-ACRV/SnakeRaven-Project/blob/main/images/snakeraven_repair.PNG)
+
+Good Calibration is when SnakeRaven is neutral and perpendicular to the table as seen in the SnakeRaven image below:
 
 ![alt text](https://github.com/Andrew-Raz-ACRV/SnakeRaven-Project/blob/main/images/raven2_calibratedpose.PNG). 
 
@@ -116,6 +122,9 @@ _2. **Teleoperation** - this allows you to control the SnakeRaven endeffector vi
 
 **Endeffector Keyboard Mapping:**
 See file [Keyboard_interactions.cpp](https://github.com/Andrew-Raz-ACRV/SnakeRaven-Project/blob/main/snake_raven_controller/src/Keyboard_interactions.cpp) 
+
+![alt text](https://github.com/Andrew-Raz-ACRV/SnakeRaven-Project/blob/main/images/teleopmapping.PNG)
+
 Dominant arm mapping
 - Z+     q
 - Z-     e
@@ -146,7 +155,7 @@ Additional keys in number pad for right arm use in dual arm setting:
 - z_rot+ -
 - z_rot- *
 
-_3. **Reset** - This moves both arms back to their perpendicular starting point as selected after calibration
+_3. **Reset** - This moves both arms (or dominant arm) back to their perpendicular starting point as selected after calibration
 
 _4. **Hand-eye calibration** - Warning: The outcome of this process is not very accurate and by default the hand-eye calibration is already set. This mode only supports the right arm configuration assuming that is where the camera is attached.
 1. Put an [aruco marker](https://github.com/Andrew-Raz-ACRV/SnakeRaven-Project/blob/main/vision_system_snakeraven/ArucoMarker1.png) in the camera field of view and keep it stationary
@@ -156,6 +165,9 @@ _5. **IBVS assisted Teleoperation** - Best Teleoperation demo but only supports 
 - record teleoperation control onto a .csv file in the home folder
 
 **Endeffector Keyboard Mapping relative to camera view:**
+
+![alt text](https://github.com/Andrew-Raz-ACRV/SnakeRaven-Project/blob/main/images/teleopmapping2.PNG)
+
 - 1      Toggles turning on or off the IBVS assist function
 - Z+     w  forward
 - Z-     s  retreat
@@ -172,6 +184,20 @@ Additional rotation under manual orientation control (without IBVS assist)
 - Y -    h  bend right
 
 _6. **Waypoint Navigation** - The only fully autonomous mode. Under any arm configuration (including dual arm), this will move the tool down by a distance and begin tracing squares in space. It allows snakeraven to move either arm autonomously to a desired set of waypoints defined in functions in [code](https://github.com/Andrew-Raz-ACRV/SnakeRaven-Project/blob/main/snake_raven_controller/src/Waypoint_Task_process.cpp)
+
+## Additional Sources:
+Check out my 
+- [thesis](https://eprints.qut.edu.au/235042/) 
+- [youtube](https://www.youtube.com/channel/UCiLKwfcym1r7Ru3fDSA_D_A)
+- [assembly video](https://www.youtube.com/watch?v=k744cxB5OMc)
+- [introduction video](https://www.youtube.com/watch?v=S8Rw0hFhcuw)
+- [CAD files](https://grabcad.com/library/snakeraven-1)
+
+Code repositories to explore:
+1. **uw-biorobotics/raven2** : [RAVEN II code repository](https://github.com/uw-biorobotics/raven2)
+2. **AutoCircle_generator** : an example application of using ROS with the RAVEN II [AutoCircle_generator code](https://github.com/melodysu83/AutoCircle_generater)
+3. My original works before this synthesis of the two packages: [**snake_raven_controller**](https://github.com/Andrew-Raz-ACRV/snake_raven_controller) and [**vision_system_snakeraven**](https://github.com/Andrew-Raz-ACRV/vision_servo_control_snakeraven)
+4. MATLAB simulations: [snakeraven controller simulation](https://github.com/Andrew-Raz-ACRV/SnakeRavenSimulation) and [IBVS assisted teleoperation simulation](https://github.com/Andrew-Raz-ACRV/SnakeRaven_IBVS_simulation)
 
 ## Contact
 This code is written by Andrew Razjigaev. If there are queries you can contact him via email: andrew_razjigaev@outlook.com
