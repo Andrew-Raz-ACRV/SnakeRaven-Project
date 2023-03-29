@@ -194,7 +194,9 @@ Check out my
 - [CAD files](https://grabcad.com/library/snakeraven-1)
 
 And view the original QUT RAVEN II training resources from 2018:
+Note that this material can be out dated:
 - [How to use the RAVEN II training videos](https://www.youtube.com/playlist?list=PLxMsr-mRZng81BdDTaUX0sueXWeVOX0qd)
+- The files in [raven_qut_training_docs_2018](https://github.com/Andrew-Raz-ACRV/SnakeRaven-Project/tree/main/raven_qut_training_docs_2018)
 
 Code repositories to explore:
 1. **uw-biorobotics/raven2** : [RAVEN II code repository](https://github.com/uw-biorobotics/raven2)
