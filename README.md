@@ -198,7 +198,7 @@ Check out my
 - [youtube for demo videos](https://www.youtube.com/channel/UCiLKwfcym1r7Ru3fDSA_D_A)
 - [SnakeRaven assembly video](https://www.youtube.com/watch?v=k744cxB5OMc)
 - [introduction to SnakeRaven video](https://www.youtube.com/watch?v=S8Rw0hFhcuw)
-- Haptic devices at QUT instruction video
+- [Haptic devices at QUT instruction video](https://youtu.be/e6HqHnoaPHQ)
 - How to use the [NDI electromagnetic Tracker](https://github.com/Andrew-Raz-ACRV/ndi_tracker_project/blob/main/QUT%20Northern%20Digital%20Inc%20Aurora%20Instructions.pdf) and my [code to it](https://github.com/Andrew-Raz-ACRV/ndi_tracker_project) for SnakeRaven
 - [CAD files](https://grabcad.com/library/snakeraven-1)
 
