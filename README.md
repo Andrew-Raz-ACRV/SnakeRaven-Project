@@ -11,9 +11,6 @@ The snake_raven_controller and vision_system_snakeraven uses Eigen to compute th
 1. **uw-biorobotics/raven2** : [This code](https://github.com/uw-biorobotics/raven2) is the main RAVEN software to connect to (release 18_05). Note that this project was made for the ROS kinetic release. The modified files can be found in this repository's [raven_2](https://github.com/Andrew-Raz-ACRV/SnakeRaven-Project/tree/main/raven_2) folder
 2. My original works: [**snake_raven_controller**](https://github.com/Andrew-Raz-ACRV/snake_raven_controller) and [**vision_system_snakeraven**](https://github.com/Andrew-Raz-ACRV/vision_servo_control_snakeraven)
 
-## RAVEN II start up procedure at QUT
-On the bottom stack, turn on the 48V power and wait for 5 seconds. Then turn on the system power and toggle the power button in the 4th stack to turn on the computer. Login details are provided in the lab documents inside the lab.
-
 ## How to use SnakeRaven
 
 0. **RAVEN II start up procedure at QUT**: On the bottom stack, turn on the 48V power and wait for 5 seconds. Then turn on the system power and toggle the power button in the 4th stack to turn on the computer. Login details are provided in the lab documents inside the lab.
