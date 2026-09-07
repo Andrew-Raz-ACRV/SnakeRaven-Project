@@ -16,17 +16,6 @@ The design, kinematics and control implemented here are published in:
 
 Full method and derivations: [PhD thesis](https://eprints.qut.edu.au/235042/).
 
-<!-- Citations verified against profile/master-cv-academic.md lines 207 and 219,
-     which github/CLAUDE.md designates the authority for publications.
-
-     DRIFT (flagged, not resolved): master-cv-academic.md dates the T-Mech paper 2024
-     (vol 29 no 2, the issue date), while profile/hardware-coding/snakeraven-platform.md
-     cites it as 2023 (the online-first date, matching the DOI's TMECH.2023 prefix).
-     Both are defensible; they should not disagree. The academic CV wins here per
-     CLAUDE.md's source-of-truth table, but profile/ should be made consistent.
-     Every github/ file written before 2026-09-07 said "T-Mech 2023" and has been
-     corrected. NEEDS ANDREW: which does he want as the canonical year? -->
-
 ## See it working
 
 - [Introduction to SnakeRaven](https://www.youtube.com/watch?v=S8Rw0hFhcuw)
@@ -35,6 +24,26 @@ Full method and derivations: [PhD thesis](https://eprints.qut.edu.au/235042/).
 - [CAD files on GrabCAD](https://grabcad.com/library/snakeraven-1)
 
 Parts list, CAD and build instructions for making your own SnakeRaven are in the appendix of the thesis.
+
+## How the system fits together
+
+Four ROS nodes. The controller owns all user interaction; the vision node turns camera frames into a control action; the RAVEN II software does the actual joint servoing.
+
+```
+      keyboard
+         │
+         ▼
+  snake_raven_controller ──/raven_jointmove──▶  r2_control  ──▶ RAVEN II
+   (talkersnakeraven)   ◀──/joint_states─────   (raven_2)
+         ▲
+         │ control action
+  vision_system_snakeraven ◀── /cv_camera/image_raw ── endoscope
+      (imageprocessor)
+```
+
+Joint deltas go out on `/raven_jointmove` at 1000 Hz; joint feedback arrives on `/joint_states` from `raven_state.msg` at 1000 Hz.
+
+Inside the controller, a ROS thread handles publish/subscribe and a console thread handles user input, so the menu stays responsive while the control loop runs. The kinematics live in their own class, separate from both.
 
 ## What is in here
 
@@ -45,7 +54,36 @@ Parts list, CAD and build instructions for making your own SnakeRaven are in the
 | `raven_2` | Modified files for the RAVEN II control software. Replaces `/src`, `/msg`, `/include` in an existing RAVEN II install. |
 | `raven_qut_training_docs_2018` | Original QUT RAVEN II training material — kinematics report, history, CAD. Dated but the kinematics report is still useful. |
 
-This repository supersedes two earlier packages of mine, [`snake_raven_controller`](https://github.com/Andrew-Raz-ACRV/snake_raven_controller) and [`vision_servo_control_snakeraven`](https://github.com/Andrew-Raz-ACRV/vision_servo_control_snakeraven) — it is the synthesis of the two. **Start here rather than there.**
+### Source map
+
+Where to look in `snake_raven_controller/src`:
+
+| File | What it holds |
+| --- | --- |
+| `talker.cpp` | `main`. Instantiates the controller class. |
+| `Raven_Controller.cpp` / `.h` | Console interaction, mode selection, and the two threads. |
+| `SnakeRaven.cpp` / `.h` | The kinematics — forward, inverse, and the continuum-section geometry. |
+| `Keyboard_interactions.cpp` | Every key mapping in one place. |
+| `Waypoint_Task_process.cpp` | Waypoint definitions for the autonomous mode. |
+| `listener.cpp` | A stand-in for the real RAVEN II node, for testing without the robot. |
+
+### What was changed in raven_2, and where
+
+Installing SnakeRaven means replacing `/src`, `/msg` and `/include` in an existing `raven_2`. These are the changes that matter:
+
+| File | Change |
+| --- | --- |
+| `src/local_io.cpp` | Adds the `JointState` publisher and the `raven_jointmove` subscriber. |
+| `src/rt_raven.cpp` | Adds the new control mode, `raven_joint_velocity_control`. |
+| `src/trajectory.cpp` | `update_joint_position_trajectory` applies the incoming deltas to the desired joint position. |
+| `include/raven/defines.h` | `#define RICKS_TOOLS` (line 45) skips tool initialisation. |
+| `msg/raven_jointmove.msg` | The joint-delta message itself. |
+
+**Keep a backup of the original RAVEN II code before overwriting.**
+
+### Superseded repositories
+
+This repository is the synthesis of two earlier packages of mine — [`snake_raven_controller`](https://github.com/Andrew-Raz-ACRV/snake_raven_controller) (the original controller and the `raven_2` modifications) and [`vision_servo_control_snakeraven`](https://github.com/Andrew-Raz-ACRV/vision_servo_control_snakeraven) (where the vision-based steering was first implemented). Both are archived. **Start here rather than there.**
 
 MATLAB simulations of the same methods, which run without any hardware: [controller simulation](https://github.com/Andrew-Raz-ACRV/SnakeRavenSimulation) and [IBVS teleoperation simulation](https://github.com/Andrew-Raz-ACRV/SnakeRaven_IBVS_simulation).
 
@@ -53,9 +91,12 @@ Electromagnetic tracking used to validate the kinematics: [`ndi_tracker_project`
 
 ## What runs without a RAVEN II
 
-Very little of this repository does. The control and vision nodes assume a RAVEN II and a physical SnakeRaven instrument, and there is no simulation backend here.
+Very little of this repository does. The control and vision nodes assume a RAVEN II and a physical SnakeRaven instrument.
 
-**If you do not have the hardware, the two MATLAB simulators linked above are what you want** — they implement the same kinematics and IBVS method and run standalone.
+Two options if you do not have the hardware:
+
+- **The MATLAB simulators** linked above implement the same kinematics and IBVS method and run standalone. This is what you want if you are here for the methods.
+- **`listenerSnakeRaven`**, in this repository, stands in for the RAVEN II node so the controller can be exercised without a robot. Useful for working on the controller itself.
 
 ## Installing
 
@@ -72,7 +113,7 @@ Download Eigen, then copy the `Eigen` and `unsupported` subfolders into an `incl
 
 ### Building
 
-Place both packages in your RAVEN II catkin workspace, then replace the contents of `raven_18_05/raven_2` with the `/src`, `/msg` and `/include` folders from this repository's `raven_2`. **Keep a backup of the original RAVEN II code.**
+Place both packages in your RAVEN II catkin workspace, then replace the contents of `raven_18_05/raven_2` with the `/src`, `/msg` and `/include` folders from this repository's `raven_2`.
 
 ```bash
 cd raven_18_05
@@ -103,6 +144,8 @@ After launching the robot, press the e-stop, twist to release, and press the sil
 If your endoscope is not device 0: `rosparam set cv_camera/device_id <n>`. To check the feed: `rosrun image_view image_view image:=/cv_camera/image_raw`.
 
 `rqt_graph` will show the four nodes and the topics between them.
+
+To shut down: press the e-stop, `k` to return to the selection menu, then `ctrl-c` in each terminal.
 
 ## Modes
 
@@ -147,27 +190,9 @@ Historical RAVEN II training material for that lab: [training videos](https://ww
 
 MIT — see [LICENSE](LICENSE). The same licence as the [RAVEN II software](https://github.com/uw-biorobotics/raven2) this builds on.
 
-<!-- RESOLVED 2026-09-07 (Andrew): MIT, chosen to match RAVEN II. That is the correct
-     call — MIT is permissive and compatible, so redistributing modified RAVEN II
-     files under MIT raises no conflict.
-
-     The gap was never the licence, it was that the README never mentioned it. A
-     visitor deciding whether they can build on this reads the README, not the
-     sidebar. One line fixes it.
-
-     ONE COMPLIANCE POINT WORTH CHECKING: MIT requires the original copyright notice
-     to travel with substantial portions of the software. The raven_2/ folder here
-     redistributes modified upstream files, so it should carry uw-biorobotics'
-     copyright notice alongside Andrew's — not only his. Worth a look at what is
-     currently in that folder. Low stakes, easy to fix, and the kind of thing a
-     careful reader notices. -->
-
-<!-- GAP: does QUT hold any claim over PhD-produced code? MIT is already published so
-     this is likely settled in practice, but worth knowing. -->
-
 ## Citing
 
-If you use this work, cite the IROS 2021 paper for the platform and kinematics, or the T-Mech 2023 paper for the vision-based steering control.
+If you use this work, cite the IROS 2021 paper for the platform and kinematics, or the T-Mech 2024 paper for the vision-based steering control.
 
 <!-- Add a CITATION.cff at the repo root so GitHub renders a "Cite this repository"
      button. Costs nothing, makes citation the path of least resistance. -->
