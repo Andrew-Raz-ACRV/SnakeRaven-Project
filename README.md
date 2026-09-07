@@ -4,6 +4,16 @@ A tendon-driven, 3D-printed snake-like continuum instrument for the RAVEN II sur
 
 SnakeRaven mounts on the RAVEN II tool holder in place of a standard instrument. This repository is the fully integrated system as it stood at the end of my PhD: dual-arm teleoperation, an endoscopic vision system with hand-eye calibration, image-based visual servoing (IBVS) that assists the operator by holding the target in view, and autonomous waypoint navigation.
 
+![SnakeRaven mounted on the RAVEN II, with the adaptor piece and the snake end-effector](images/FrontCoverSnake2.png)
+
+*A: SnakeRaven on the RAVEN II. B: the adaptor piece. C: the snake end-effector.*
+
+<!-- This is the hero image from snake_raven_controller. Copy the file into this
+     repo's images/ folder. It is the single most valuable image in the network —
+     it shows what the thing physically is, in one glance, which no amount of prose
+     does. -->
+
+
 **Status:** archived. Completed March 2023 and not actively maintained. Built for ROS Kinetic against RAVEN II release 18_05. The methods are described in full in the papers and thesis below.
 
 ## Papers
@@ -67,7 +77,9 @@ Where to look in `snake_raven_controller/src`:
 | `Waypoint_Task_process.cpp` | Waypoint definitions for the autonomous mode. |
 | `listener.cpp` | A stand-in for the real RAVEN II node, for testing without the robot. |
 
-### What was changed in raven_2, and where
+### What was changed in raven_2, and why
+
+The RAVEN II software drives the tool centre point. SnakeRaven's continuum section has more joints than a standard instrument and needs them commanded individually, so `raven_2` gains a **velocity joint control mode** that accepts incremental joint updates over a ROS topic. That mode is the reason this repository ships modified RAVEN II files at all.
 
 Installing SnakeRaven means replacing `/src`, `/msg` and `/include` in an existing `raven_2`. These are the changes that matter:
 
@@ -161,9 +173,15 @@ All interaction is through the `snake_raven_controller` menu.
 | **5 — IBVS-assisted teleoperation** | End-effector control *relative to the camera view*, with the visual-servoing assist holding the target in frame. Right arm only. The best demonstration of the system. |
 | **6 — Waypoint navigation** | The only fully autonomous mode. Traces a defined set of waypoints. Works in any arm configuration. |
 
-**Two warnings that matter.**
+### Getting the calibration right
+
+Good calibration is SnakeRaven neutral and perpendicular to the table:
+
+![SnakeRaven calibrated: the instrument neutral and perpendicular to the table](images/raven2_calibratedpose.PNG)
 
 **Re-tension the tendons only during calibration.** That is the one point where the tool can be safely adjusted and the tendons placed back on the pulley guides with tweezers. Doing it at any other stage risks breaking the end-effector.
+
+![Re-tensioning the SnakeRaven tendons onto the pulley guides with tweezers](images/snakeraven_repair.PNG)
 
 **Hand-eye calibration (mode 4) is not very accurate**, and a manually determined transform is already set in the code. Use mode 4 only if you have reason to re-estimate it.
 
@@ -173,7 +191,21 @@ Defined in [`Keyboard_interactions.cpp`](snake_raven_controller/src/Keyboard_int
 
 **Joint control** — left arm `1/q` `2/w` `3/e` `4/r` `5/t` `6/y` `7/u`, right arm `a/z` `s/x` `d/c` `f/v` `g/b` `h/n` `j/m`, in the order shoulder, elbow, Z insertion, tool rotation, wrist, grasp 1, grasp 2.
 
-**Teleoperation** — `w`/`s` forward/retreat, `q`/`e` up/down, `a`/`d` left/right, `z` freeze, `t`/`g` bend up/down, `f`/`h` bend left/right. In IBVS mode, `1` toggles the assist. The number pad drives the right arm in dual-arm mode.
+![Joint control keyboard mapping](images/jointmapping.PNG)
+
+**Teleoperation** — `w`/`s` forward/retreat, `q`/`e` up/down, `a`/`d` left/right, `z` freeze, `t`/`g` bend up/down, `f`/`h` bend left/right. The number pad drives the right arm in dual-arm mode.
+
+![End-effector teleoperation keyboard mapping](images/teleopmapping.PNG)
+
+**IBVS-assisted teleoperation** moves the end-effector relative to the camera view, and `1` toggles the assist on and off.
+
+![Keyboard mapping for teleoperation relative to the camera view](images/teleopmapping2.PNG)
+
+<!-- Both the text lists and the images are kept deliberately. The text is
+     searchable, copy-pasteable and readable by a screen reader; the images are
+     faster to scan while you have one hand on the keyboard. They are not
+     redundant — they serve different moments. -->
+
 
 ## Running it on the QUT RAVEN II
 
@@ -185,6 +217,10 @@ The QUT machine has an assembled SnakeRaven tool, so you can skip straight to bu
 On the bottom stack, turn on the 48 V power and wait five seconds. Turn on the system power, then the power button on the fourth stack to start the computer. Login details are in the lab documentation. `source devel/setup.bash` is already in `.bashrc` there.
 
 Historical RAVEN II training material for that lab: [training videos](https://www.youtube.com/playlist?list=PLxMsr-mRZng81BdDTaUX0sueXWeVOX0qd) and the `raven_qut_training_docs_2018` folder. Also: [haptic devices at QUT](https://youtu.be/e6HqHnoaPHQ).
+
+## Acknowledgements
+
+The ROS integration started from [AutoCircle_generator](https://github.com/melodysu83/AutoCircle_generater), QUT's reference example for programming the RAVEN II over ROS. It demonstrates tool-centre-point control; this work extends the approach to joint-level control.
 
 ## Licence
 
