@@ -6,7 +6,7 @@ SnakeRaven mounts on the RAVEN II tool holder in place of a standard instrument.
 
 ![SnakeRaven mounted on the RAVEN II, with the adaptor piece and the snake end-effector](https://github.com/Andrew-Raz-ACRV/SnakeRaven-Project/blob/main/images/SnakeRaven_real_hardware_and_CAD_with_camera.png)
 
-*A: SnakeRaven on the RAVEN II. B: the adaptor piece. C: the snake end-effector.*
+*A. SnakeRaven - a 3D printed steerable arthroscope attached to the RAVEN II telerobotic system. B. the end-effector and its illumination inside a phantom knee C. a close-up view of the end-effector and camera sensor D. a diagram of the end-effector structure with the integrated camera, distal components in red and proximal components in blue*
 
 <!-- This is the hero image from snake_raven_controller. Copy the file into this
      repo's images/ folder. It is the single most valuable image in the network —
