@@ -1,217 +1,177 @@
-# SnakeRaven-Project
-The fully integrated SnakeRaven code including an updated SnakeRaven controller with control capability for dual arm teleoperation, vision system supporting hand-eye calibration and automated motion using waypoint navigation for dual arms. This project was completed in March 2023.
+# SnakeRaven
 
-## Prerequisite installation :
-The snake_raven_controller and vision_system_snakeraven uses Eigen to compute the kinematics and VPC control algorithms. To install this do:
-1. Go to http://eigen.tuxfamily.org/index.php?title=Main_Page#Download to get the most recent Eigen. 
-2. Download the zip, extract and find the subfolder "Eigen" and subfolder "unsupported"
-3. In snake_raven_controller/ and vision_system_snakeraven/ create the folder 'include' and paste 'Eigen' and 'unsupported' into the include folder.
+A tendon-driven, 3D-printed snake-like continuum instrument for the RAVEN II surgical research robot, with the real-time control and vision software that drives it.
 
-## Project builds on Raven II software:
-1. **uw-biorobotics/raven2** : [This code](https://github.com/uw-biorobotics/raven2) is the main RAVEN software to connect to (release 18_05). Note that this project was made for the ROS kinetic release. The modified files can be found in this repository's [raven_2](https://github.com/Andrew-Raz-ACRV/SnakeRaven-Project/tree/main/raven_2) folder
-2. My original works: [**snake_raven_controller**](https://github.com/Andrew-Raz-ACRV/snake_raven_controller) and [**vision_system_snakeraven**](https://github.com/Andrew-Raz-ACRV/vision_servo_control_snakeraven)
+SnakeRaven mounts on the RAVEN II tool holder in place of a standard instrument. This repository is the fully integrated system as it stood at the end of my PhD: dual-arm teleoperation, an endoscopic vision system with hand-eye calibration, image-based visual servoing (IBVS) that assists the operator by holding the target in view, and autonomous waypoint navigation.
 
-## How to use SnakeRaven
+**Status:** archived. Completed March 2023 and not actively maintained. Built for ROS Kinetic against RAVEN II release 18_05. The methods are described in full in the papers and thesis below.
 
-0. **RAVEN II start up procedure at QUT**: On the bottom stack, turn on the 48V power and wait for 5 seconds. Then turn on the system power and toggle the power button in the 4th stack to turn on the computer. Login details are provided in the lab documents inside the lab.
+## Papers
 
-QUT has an assembled SnakeRaven tool, if using the RAVEN II computer at QUT skip to step 3. Instructions, parts list, CAD files, videos and other resources to create your own SnakeRaven can be found in the appendix of my [thesis](https://eprints.qut.edu.au/235042/) and the bottom of this readme file
+The design, kinematics and control implemented here are published in:
 
-1. **Download** : On the RAVEN II computer ensure you have the packages snake_raven_controller/ and vision_system_snakeraven/ from this repository and place the folder in the RAVEN II catkin workspace folder e.g. home/raven_18_05
+> A. Razjigaev, A. K. Pandey, D. Howard, J. Roberts and L. Wu, "SnakeRaven: Teleoperation of a 3D Printed Snake-like Manipulator Integrated to the RAVEN II Surgical Robot," *2021 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)*, 2021, pp. 5282–5288. [doi:10.1109/IROS51168.2021.9636878](https://doi.org/10.1109/IROS51168.2021.9636878)
 
-2. **Update** : Go to raven_18_05/raven_2 and update its contents with the three folders: /src /msg /include in the contents of folder [raven_2](https://github.com/Andrew-Raz-ACRV/SnakeRaven-Project/tree/main/raven_2). Keep a back up of the original RAVEN II code just in case.
+> A. Razjigaev, A. K. Pandey, D. Howard, J. Roberts, A. Jaiprakash, R. Crawford and L. Wu, "Optimal Vision-Based Orientation Steering Control for a 3-D Printed Dexterous Snake-Like Manipulator to Assist Teleoperation," *IEEE/ASME Transactions on Mechatronics*, vol. 29, no. 2, pp. 1260–1271, 2024. [doi:10.1109/TMECH.2023.3300662](https://doi.org/10.1109/TMECH.2023.3300662)
 
-3. **Make** : Open a new terminal (ctrl-alt-t) and cd to the Raven II directory. Run catkin_make to compile the new content and modifications
-Note: the sourcing step "source devel/setup.bash" is automatically being run on the QUT computer as it is being called in the .bashrc file
-```
+Full method and derivations: [PhD thesis](https://eprints.qut.edu.au/235042/).
+
+<!-- Citations verified against profile/master-cv-academic.md lines 207 and 219,
+     which github/CLAUDE.md designates the authority for publications.
+
+     DRIFT (flagged, not resolved): master-cv-academic.md dates the T-Mech paper 2024
+     (vol 29 no 2, the issue date), while profile/hardware-coding/snakeraven-platform.md
+     cites it as 2023 (the online-first date, matching the DOI's TMECH.2023 prefix).
+     Both are defensible; they should not disagree. The academic CV wins here per
+     CLAUDE.md's source-of-truth table, but profile/ should be made consistent.
+     Every github/ file written before 2026-09-07 said "T-Mech 2023" and has been
+     corrected. NEEDS ANDREW: which does he want as the canonical year? -->
+
+## See it working
+
+- [Introduction to SnakeRaven](https://www.youtube.com/watch?v=S8Rw0hFhcuw)
+- [Assembly walkthrough](https://www.youtube.com/watch?v=k744cxB5OMc)
+- [Demo videos](https://www.youtube.com/channel/UCiLKwfcym1r7Ru3fDSA_D_A)
+- [CAD files on GrabCAD](https://grabcad.com/library/snakeraven-1)
+
+Parts list, CAD and build instructions for making your own SnakeRaven are in the appendix of the thesis.
+
+## What is in here
+
+| Package | What it does |
+| --- | --- |
+| `snake_raven_controller` | Kinematics and control. Forward/inverse kinematics for the multi-module continuum section, teleoperation modes, waypoint tasks, keyboard interaction. |
+| `vision_system_snakeraven` | Endoscopic camera processing, ArUco detection, hand-eye calibration, and the IBVS control action. |
+| `raven_2` | Modified files for the RAVEN II control software. Replaces `/src`, `/msg`, `/include` in an existing RAVEN II install. |
+| `raven_qut_training_docs_2018` | Original QUT RAVEN II training material — kinematics report, history, CAD. Dated but the kinematics report is still useful. |
+
+This repository supersedes two earlier packages of mine, [`snake_raven_controller`](https://github.com/Andrew-Raz-ACRV/snake_raven_controller) and [`vision_servo_control_snakeraven`](https://github.com/Andrew-Raz-ACRV/vision_servo_control_snakeraven) — it is the synthesis of the two. **Start here rather than there.**
+
+MATLAB simulations of the same methods, which run without any hardware: [controller simulation](https://github.com/Andrew-Raz-ACRV/SnakeRavenSimulation) and [IBVS teleoperation simulation](https://github.com/Andrew-Raz-ACRV/SnakeRaven_IBVS_simulation).
+
+Electromagnetic tracking used to validate the kinematics: [`ndi_tracker_project`](https://github.com/Andrew-Raz-ACRV/ndi_tracker_project).
+
+## What runs without a RAVEN II
+
+Very little of this repository does. The control and vision nodes assume a RAVEN II and a physical SnakeRaven instrument, and there is no simulation backend here.
+
+**If you do not have the hardware, the two MATLAB simulators linked above are what you want** — they implement the same kinematics and IBVS method and run standalone.
+
+## Installing
+
+### Dependencies
+
+- ROS Kinetic. This was not developed or tested against later distributions.
+- [RAVEN II control software](https://github.com/uw-biorobotics/raven2), release 18_05.
+- [Eigen](https://eigen.tuxfamily.org) — header-only, and not vendored here.
+- `cv_camera` for the USB endoscope.
+
+### Eigen
+
+Download Eigen, then copy the `Eigen` and `unsupported` subfolders into an `include/` folder inside both `snake_raven_controller/` and `vision_system_snakeraven/`.
+
+### Building
+
+Place both packages in your RAVEN II catkin workspace, then replace the contents of `raven_18_05/raven_2` with the `/src`, `/msg` and `/include` folders from this repository's `raven_2`. **Keep a backup of the original RAVEN II code.**
+
+```bash
 cd raven_18_05
 source devel/setup.bash
 catkin_make
 ```
 
-4. **Run the Raven II** : If the SnakeRaven instrument isn't attached at this point wait until the calibration step. roslaunch the robot and a log message should indicate that you are running the modified version of the RAVEN II software. Press the e-stop, twist release and press the silver reset to go through homing. 
-```
+## Running
+
+Four nodes, one terminal each.
+
+```bash
+# 1. the robot
 roslaunch raven_2 raven_2.launch
-```
-![alt text](https://github.com/Andrew-Raz-ACRV/SnakeRaven-Project/blob/main/images/raven_2_start.PNG)
 
-5. **Velocity Joint Control mode** : Press 'm' to change mode and press '2' to start the velocity joint control mode, press the e-stop, twist release and press the silver reset for the mode change to occur.
-
-6. **Run talkerSnakeRaven** : Open a new terminal and run command:
-```
+# 2. the controller (all user interaction happens here)
 rosrun snake_raven_controller talkersnakeraven
-```
 
-7. **Run endoscopic camera node** : Open a new terminal and run command:
-```
+# 3. the endoscope
 rosrun cv_camera cv_camera_node
-```
-Note: the endoscope is a USB camera connected to the computer and is device 0 at QUT. Depending on your system you may need to change the camera parameter to device number #:
-```
-rosparam set cv_camera/device_id #
-```
-Optionally, You can check the view of the image feed with command
-```
-rosrun image_view image_view image:=/cv_camera/image_raw
-```
-Optionally for a different device # like an external camera you can also rename the camera node but beaware this changes the topic name to subscribe to:
-```
-rosrun cv_camera cv_camera_node __name:=external _device_id=#
-```
 
-8. **Run endoscopic camera computer vision node** : Open a new terminal and run command:
-```
+# 4. vision processing
 rosrun vision_system_snakeraven imageprocessor
 ```
 
-Layout of the four terminals for each of the ROS Nodes:
+After launching the robot, press the e-stop, twist to release, and press the silver reset to home. Then press `m` and `2` to enter velocity joint control mode, and repeat the e-stop/release/reset for the mode change to take effect.
 
-![alt text](https://github.com/Andrew-Raz-ACRV/SnakeRaven-Project/blob/main/images/terminals.PNG)
+If your endoscope is not device 0: `rosparam set cv_camera/device_id <n>`. To check the feed: `rosrun image_view image_view image:=/cv_camera/image_raw`.
 
-Running rqt_graph in another terminal will visualise the ROS communication between these four nodes:
+`rqt_graph` will show the four nodes and the topics between them.
 
-![alt text](https://github.com/Andrew-Raz-ACRV/SnakeRaven-Project/blob/main/images/rqt_graph_diagram.png)
+## Modes
 
-9. **Selection Menu** : All user interaction is conducted in the snake_raven_controller node
+All interaction is through the `snake_raven_controller` menu.
 
-![alt text](https://github.com/Andrew-Raz-ACRV/SnakeRaven-Project/blob/main/images/snakeraven_controller_menu.PNG)
+| Mode | What it does |
+| --- | --- |
+| **0 — Calibration** | Moves the selected arm (right, left, or dual) perpendicular to the table so the SnakeRaven tool can be fitted. Use joint control to fine-tune the mesh. |
+| **1 — Joint control** | Per-joint keyboard control, no calibration required. |
+| **2 — Teleoperation** | End-effector keyboard control in the robot frame. Logs to CSV in the home folder. |
+| **3 — Reset** | Returns the arms to the post-calibration starting pose. |
+| **4 — Hand-eye calibration** | Estimates the camera-to-tool transform from an ArUco marker. Right arm only. |
+| **5 — IBVS-assisted teleoperation** | End-effector control *relative to the camera view*, with the visual-servoing assist holding the target in frame. Right arm only. The best demonstration of the system. |
+| **6 — Waypoint navigation** | The only fully autonomous mode. Traces a defined set of waypoints. Works in any arm configuration. |
 
-_0. **Calibration** - this moves the arms to the required configuration given by the next user choice:
+**Two warnings that matter.**
 
-![alt text](https://github.com/Andrew-Raz-ACRV/SnakeRaven-Project/blob/main/images/arm_menu.PNG)
+**Re-tension the tendons only during calibration.** That is the one point where the tool can be safely adjusted and the tendons placed back on the pulley guides with tweezers. Doing it at any other stage risks breaking the end-effector.
 
-Enter:
-0. for right arm only, 1. for left arm only or 2. for dual arm configuration. 
+**Hand-eye calibration (mode 4) is not very accurate**, and a manually determined transform is already set in the code. Use mode 4 only if you have reason to re-estimate it.
 
-In each of these cases the selected dominate arm or both arms are moved to be perpendicular to the table and the other arm is moved aside. It will pop up a message saying that you can insert the SnakeRaven tool onto the tool holder. 
+### Keyboard maps
 
-![alt text](https://github.com/Andrew-Raz-ACRV/SnakeRaven-Project/blob/main/images/calibration_screen.PNG)
+Defined in [`Keyboard_interactions.cpp`](snake_raven_controller/src/Keyboard_interactions.cpp).
 
-You can use the keyboard to adjust the joints of the robot individually particularly to insert the SnakeRaven tool to mesh with the robot (see Joint Control section for keyboard mapping). 
+**Joint control** — left arm `1/q` `2/w` `3/e` `4/r` `5/t` `6/y` `7/u`, right arm `a/z` `s/x` `d/c` `f/v` `g/b` `h/n` `j/m`, in the order shoulder, elbow, Z insertion, tool rotation, wrist, grasp 1, grasp 2.
 
-This is also the ONLY point where you can re-tension the SnakeRaven tendons and use tweezers to place them back onto the pulley guides. DO NOT do this at any other stage or risk breaking the end-effector.
+**Teleoperation** — `w`/`s` forward/retreat, `q`/`e` up/down, `a`/`d` left/right, `z` freeze, `t`/`g` bend up/down, `f`/`h` bend left/right. In IBVS mode, `1` toggles the assist. The number pad drives the right arm in dual-arm mode.
 
-![alt text](https://github.com/Andrew-Raz-ACRV/SnakeRaven-Project/blob/main/images/snakeraven_repair.PNG)
+## Running it on the QUT RAVEN II
 
-Good Calibration is when SnakeRaven is neutral and perpendicular to the table as seen in the SnakeRaven image below:
+<!-- Site-specific. Kept because it is genuinely useful to the next person in that
+     lab and exists nowhere else, but it is not general instruction. -->
 
-![alt text](https://github.com/Andrew-Raz-ACRV/SnakeRaven-Project/blob/main/images/raven2_calibratedpose.PNG). 
+The QUT machine has an assembled SnakeRaven tool, so you can skip straight to building.
 
-Use the keyboard joint control to adjust the robot calibration manually. 
+On the bottom stack, turn on the 48 V power and wait five seconds. Turn on the system power, then the power button on the fourth stack to start the computer. Login details are in the lab documentation. `source devel/setup.bash` is already in `.bashrc` there.
 
-_1. **Joint Control** - this allows you to control the robot joints individually with the keyboard without calibration
+Historical RAVEN II training material for that lab: [training videos](https://www.youtube.com/playlist?list=PLxMsr-mRZng81BdDTaUX0sueXWeVOX0qd) and the `raven_qut_training_docs_2018` folder. Also: [haptic devices at QUT](https://youtu.be/e6HqHnoaPHQ).
 
-**Joint Control Keyboard Mapping:**
-See file [Keyboard_interactions.cpp](https://github.com/Andrew-Raz-ACRV/SnakeRaven-Project/blob/main/snake_raven_controller/src/Keyboard_interactions.cpp) 
+## Licence
 
-![alt text](https://github.com/Andrew-Raz-ACRV/SnakeRaven-Project/blob/main/images/jointmapping.PNG)
+MIT — see [LICENSE](LICENSE). The same licence as the [RAVEN II software](https://github.com/uw-biorobotics/raven2) this builds on.
 
-Left Arm
-- Shoulder +/-:      1/q
-- Elbow +/-:         2/w
-- Z Insertion +/-:   3/e
-- Tool Rotation +/-: 4/r
-- Wrist +/-:         5/t
-- Grasp 1 +/-:       6/y
-- Grasp 2 +/-:       7/u
+<!-- RESOLVED 2026-09-07 (Andrew): MIT, chosen to match RAVEN II. That is the correct
+     call — MIT is permissive and compatible, so redistributing modified RAVEN II
+     files under MIT raises no conflict.
 
-Right Arm
-- Shoulder +/-:      a/z
-- Elbow +/-:         s/x
-- Z Insertion +/-:   d/c
-- Tool Rotation +/-: f/v
-- Wrist +/-:         g/b
-- Grasp 1 +/-:       h/n
-- Grasp 2 +/-:       j/m
+     The gap was never the licence, it was that the README never mentioned it. A
+     visitor deciding whether they can build on this reads the README, not the
+     sidebar. One line fixes it.
 
-_2. **Teleoperation** - this allows you to control the SnakeRaven endeffector via keyboard but only after calibration. It has some additional code in the Raven_Controller class to:
-- record teleoperation control onto a .csv file in the home folder
+     ONE COMPLIANCE POINT WORTH CHECKING: MIT requires the original copyright notice
+     to travel with substantial portions of the software. The raven_2/ folder here
+     redistributes modified upstream files, so it should carry uw-biorobotics'
+     copyright notice alongside Andrew's — not only his. Worth a look at what is
+     currently in that folder. Low stakes, easy to fix, and the kind of thing a
+     careful reader notices. -->
 
-**Endeffector Keyboard Mapping:**
-See file [Keyboard_interactions.cpp](https://github.com/Andrew-Raz-ACRV/SnakeRaven-Project/blob/main/snake_raven_controller/src/Keyboard_interactions.cpp) 
+<!-- GAP: does QUT hold any claim over PhD-produced code? MIT is already published so
+     this is likely settled in practice, but worth knowing. -->
 
-![alt text](https://github.com/Andrew-Raz-ACRV/SnakeRaven-Project/blob/main/images/teleopmapping.PNG)
+## Citing
 
-Dominant arm mapping
-- Z+     q
-- Z-     e
-- Y+     w
-- Y-     s
-- X+     d
-- X-     a
-- freeze z
-- pan +  f
-- pan -  h
-- tilt + t
-- tilt - g
-- z_rot+ y
-- z_rot- r
+If you use this work, cite the IROS 2021 paper for the platform and kinematics, or the T-Mech 2023 paper for the vision-based steering control.
 
-Additional keys in number pad for right arm use in dual arm setting:
-- Z+     4
-- Z-     6
-- Y+     5
-- Y-     2
-- X+     3
-- X-     1
-- freeze z
-- pan +  7
-- pan -  9
-- tilt + /
-- tilt - 8
-- z_rot+ -
-- z_rot- *
+<!-- Add a CITATION.cff at the repo root so GitHub renders a "Cite this repository"
+     button. Costs nothing, makes citation the path of least resistance. -->
 
-_3. **Reset** - This moves both arms (or dominant arm) back to their perpendicular starting point as selected after calibration
+## Questions
 
-_4. **Hand-eye calibration** - Warning: The outcome of this process is not very accurate and by default the hand-eye calibration is already set manually in the code. This mode only supports the right arm configuration assuming that is where the camera is attached.
-1. Put an [aruco marker](https://github.com/Andrew-Raz-ACRV/SnakeRaven-Project/blob/main/vision_system_snakeraven/ArucoMarker1.png) in the camera field of view and keep it stationary
-2. The program starts recording data points immediantely so the user must teleoperate the robot until the data collection is complete. After completion, the new camera to tool transform is displayed.
-
-_5. **IBVS assisted Teleoperation** - Best Teleoperation demo but only supports the right arm. This allows you to control the SnakeRaven endeffector via keyboard relative to the camera view with the IBVS assist support (see how that works in my [thesis](https://eprints.qut.edu.au/235042/)) but only after calibration. It has some additional code in the Raven_Controller class to:
-- record teleoperation control onto a .csv file in the home folder
-
-**Endeffector Keyboard Mapping relative to camera view:**
-
-![alt text](https://github.com/Andrew-Raz-ACRV/SnakeRaven-Project/blob/main/images/teleopmapping2.PNG)
-
-- 1      Toggles turning on or off the IBVS assist function
-- Z+     w  forward
-- Z-     s  retreat
-- Y+     e  down
-- Y-     q  up
-- X+     d  right
-- X-     a  left
-- freeze z  toggle stop motion
-
-Additional rotation under manual orientation control (without IBVS assist)
-- X +    t  bend up
-- X -    g  bend down
-- Y +    f  bend left
-- Y -    h  bend right
-
-_6. **Waypoint Navigation** - The only fully autonomous mode. Under any arm configuration (including dual arm), this will move the tool down by a distance and begin tracing squares in space. It allows snakeraven to move either arm autonomously to a desired set of waypoints defined in functions in [code](https://github.com/Andrew-Raz-ACRV/SnakeRaven-Project/blob/main/snake_raven_controller/src/Waypoint_Task_process.cpp)
-
-## Additional Sources:
-Check out my 
-- [thesis](https://eprints.qut.edu.au/235042/) 
-- [youtube for demo videos](https://www.youtube.com/channel/UCiLKwfcym1r7Ru3fDSA_D_A)
-- [SnakeRaven assembly video](https://www.youtube.com/watch?v=k744cxB5OMc)
-- [introduction to SnakeRaven video](https://www.youtube.com/watch?v=S8Rw0hFhcuw)
-- [Haptic devices at QUT instruction video](https://youtu.be/e6HqHnoaPHQ)
-- How to use the [NDI electromagnetic Tracker](https://github.com/Andrew-Raz-ACRV/ndi_tracker_project/blob/main/QUT%20Northern%20Digital%20Inc%20Aurora%20Instructions.pdf) and my [code to it](https://github.com/Andrew-Raz-ACRV/ndi_tracker_project) for SnakeRaven
-- [CAD files](https://grabcad.com/library/snakeraven-1)
-
-And view the original QUT RAVEN II training resources from 2018:
-- [How to use the RAVEN II training videos](https://www.youtube.com/playlist?list=PLxMsr-mRZng81BdDTaUX0sueXWeVOX0qd)
-- The files in [raven_qut_training_docs_2018](https://github.com/Andrew-Raz-ACRV/SnakeRaven-Project/tree/main/raven_qut_training_docs_2018)
-Note that this material can be out dated but has timeless resources such as the kinematics report, RAVEN history and CAD files
-
-GitHub Code repositories to explore:
-1. **uw-biorobotics/raven2** : [RAVEN II code repository](https://github.com/uw-biorobotics/raven2)
-2. **AutoCircle_generator** : an example application of using ROS with the RAVEN II [AutoCircle_generator code](https://github.com/melodysu83/AutoCircle_generater)
-3. My original works before this synthesis of the two packages: [**snake_raven_controller**](https://github.com/Andrew-Raz-ACRV/snake_raven_controller) and [**vision_system_snakeraven**](https://github.com/Andrew-Raz-ACRV/vision_servo_control_snakeraven)
-4. MATLAB simulations: [snakeraven controller simulation](https://github.com/Andrew-Raz-ACRV/SnakeRavenSimulation) and [IBVS assisted teleoperation simulation](https://github.com/Andrew-Raz-ACRV/SnakeRaven_IBVS_simulation)
-
-## Contact
-This code is written by Andrew Razjigaev and describes the SnakeRaven system at QUT at the end of his PhD and work there from February 2023. If there are any queries about this project you can contact him via email: andrew_razjigaev@outlook.com
+Written by Andrew Razjigaev. This describes the SnakeRaven system at QUT as it stood at the end of my PhD, February–March 2023. Questions: andrew_razjigaev@outlook.com
