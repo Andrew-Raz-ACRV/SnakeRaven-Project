@@ -4,7 +4,7 @@ A tendon-driven, 3D-printed snake-like continuum instrument for the RAVEN II sur
 
 SnakeRaven mounts on the RAVEN II tool holder in place of a standard instrument. This repository is the fully integrated system as it stood at the end of my PhD: dual-arm teleoperation, an endoscopic vision system with hand-eye calibration, image-based visual servoing (IBVS) that assists the operator by holding the target in view, and autonomous waypoint navigation.
 
-![SnakeRaven mounted on the RAVEN II, with the adaptor piece and the snake end-effector](https://github.com/Andrew-Raz-ACRV/snake_raven_controller/blob/master/FrontCoverSnake2.png)
+![SnakeRaven mounted on the RAVEN II, with the adaptor piece and the snake end-effector](https://github.com/Andrew-Raz-ACRV/SnakeRaven-Project/blob/main/images/FrontCoverSnake2.png)
 
 *A: SnakeRaven on the RAVEN II. B: the adaptor piece. C: the snake end-effector.*
 
